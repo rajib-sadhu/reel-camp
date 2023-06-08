@@ -1,9 +1,12 @@
+import { Helmet } from "react-helmet";
 
 
 const Home = () => {
     return (
         <div>
-            Home
+            <Helmet>
+                <title>ReelCamp | Home</title>
+            </Helmet>
         </div>
     );
 };
