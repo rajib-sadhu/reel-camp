@@ -42,7 +42,7 @@ const Navbar = () => {
             <div className="navbar-end">
                 {
                     !user ?
-                        <Link>
+                        <Link to="/signIn">
                             <button className="btn" >Login</button>
                         </Link>
                         :
