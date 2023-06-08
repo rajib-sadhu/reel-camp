@@ -1,0 +1,69 @@
+[
+    {
+      "className": "Introduction to Film Production",
+      "instructorName": "John Smith",
+      "instructorEmail": "john.smith@example.com",
+      "instructorStatus": "Active",
+      "availableSeats": 15,
+      "image": "https://i.ibb.co/bJhCJY7/photo-1515634928627-2a4e0dae3ddf-ixlib-rb-4-0.jpg",
+      "price": 99.99,
+      "category": "Production",
+      "instructorImage": "https://i.ibb.co/hKNKmPq/teacher-brunette-instructor-with-computer-suit-whiteboard-classroom-crossing-hands-140725-163245.jpg"
+    },
+    {
+      "className": "Screenwriting Fundamentals",
+      "instructorName": "Sarah Johnson",
+      "instructorEmail": "sarah.johnson@example.com",
+      "instructorStatus": "Active",
+      "availableSeats": 10,
+      "image": "https://i.ibb.co/JKV2bQ4/brunette-mature-woman-journalist-eyeglasses-typing-typewriter-indoors-171337-19235.jpg",
+      "price": 79.99,
+      "category": "Screenwriting",
+      "instructorImage": "https://i.ibb.co/gJVTVSp/businesswoman-with-digital-tablet-1098-21759.jpg"
+    },
+    {
+      "className": "Cinematography Masterclass",
+      "instructorName": "Michael Thompson",
+      "instructorEmail": "michael.thompson@example.com",
+      "instructorStatus": "Active",
+      "availableSeats": 12,
+      "image": "https://i.ibb.co/2N5cXB1/photo-1595859703065-2259982784bb-ixlib-rb-4-0.jpg",
+      "price": 129.99,
+      "category": "Cinematography",
+      "instructorImage": "hhttps://i.ibb.co/Vxgc7WQ/pleased-young-businessman-wearing-glasses-holding-folder-his-thumb-up-isolated-white-background-1417.jpg"
+    },
+    {
+      "className": "Film Editing Techniques",
+      "instructorName": "Emily Davis",
+      "instructorEmail": "emily.davis@example.com",
+      "instructorStatus": "Active",
+      "availableSeats": 8,
+      "image": "https://i.ibb.co/z7DWyy6/photo-1609619385002-f40f1df9b7eb-ixlib-rb-4-0.jpg",
+      "price": 89.99,
+      "category": "Editing",
+      "instructorImage": "https://i.ibb.co/B2NJ6L9/front-view-woman-desk-posing-with-clapperboard-23-2148434695.jpg"
+    },
+    {
+      "className": "Acting for Film and TV",
+      "instructorName": "Robert Johnson",
+      "instructorEmail": "robert.johnson@example.com",
+      "instructorStatus": "Active",
+      "availableSeats": 20,
+      "image": "https://i.ibb.co/Dt8P2sr/man-filming-with-professional-camera-new-movie-23-2149066384.jpg",
+      "price": 109.99,
+      "category": "Acting",
+      "instructorImage": "https://i.ibb.co/37WHGNg/man-with-clapperboard-1187-1968.jpg"
+    },
+    {
+        "className": "Film Marketing and Distribution",
+        "instructorName": "Alexandra Lee",
+        "instructorEmail": "alexandra.lee@example.com",
+        "instructorStatus": "Active",
+        "availableSeats": 18,
+        "image": "https://i.ibb.co/L6xCzHV/Generic-Theater-eventimage.jpg",
+        "price": 119.99,
+        "category": "Marketing",
+        "instructorImage": "https://i.ibb.co/SsfzQ45/curly-haired-woman-holding-clapperboard-114579-26838.jpg"
+      }
+  ]
+  
