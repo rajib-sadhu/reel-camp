@@ -13,6 +13,9 @@ const Navbar = () => {
     const links = <>
         <li><Link to={`/`} >Home</Link></li>
         <li><Link to={`/`} >About</Link></li>
+        <li><Link to={`/`} >Classes</Link></li>
+        <li><Link to={`/`} >Instructors</Link></li>
+        <li><Link to={`/`} >Dashboard</Link></li>
         <li> <Link onClick={() => setETheme(!ETheme)}>Theme {ETheme ? <FaSun></FaSun> : <FaMoon></FaMoon>}</Link> </li>
     </>
 

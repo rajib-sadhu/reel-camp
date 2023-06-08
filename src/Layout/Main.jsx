@@ -13,7 +13,9 @@ const Main = () => {
     return (
         <ThemeContext.Provider value={themeToggler} >
             <div data-theme={ETheme ? "cupcake" : "dark"} >
-                <Navbar />
+                <div className="sticky top-0 z-30">
+                    <Navbar />
+                </div>
                 <div className="md:min-h-[38rem] min-h-screen" >
                     <Outlet />
                 </div>

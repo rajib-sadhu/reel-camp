@@ -18,9 +18,8 @@ import { Link } from "react-router-dom";
 
 const Banner = () => {
     return (
-        <div className="w-full h-[30rem]" >
+        <div className="w-full md:h-[38rem]" >
             <Swiper
-                spaceBetween={10}
                 effect={"fade"}
                 // navigation={true}
                 pagination={{
@@ -28,7 +27,6 @@ const Banner = () => {
                 }}
                 modules={[EffectFade, Navigation, Pagination]}
                 autoplay={true}
-                onAutoplayTimeLeft={10}
                 rewind={true}
                 className="mySwiper w-full"
             >
