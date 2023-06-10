@@ -1,12 +1,13 @@
 import useEnrollCart from "../../../hooks/useEnrollCart";
 import { AiFillDelete } from 'react-icons/ai';
 import { FaStripe } from 'react-icons/fa';
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
 const Cart = () => {
 
-    const [enrollCart, ,refetch] = useEnrollCart();
+    const [enrollCart, , refetch] = useEnrollCart();
 
     const handleDelete = (item) => {
         Swal.fire({
@@ -77,10 +78,12 @@ const Cart = () => {
                                 <td>{item?.className}</td>
                                 <td>${item?.price}</td>
                                 <td>
-                                    <button onClick={()=>handleDelete(item)} className="btn btn-error text-2xl"><AiFillDelete /></button>
+                                    <button onClick={() => handleDelete(item)} className="btn btn-error text-2xl"><AiFillDelete /></button>
                                 </td>
                                 <td>
-                                    <button className="btn btn-success text-2xl"><FaStripe /><span className="text-lg capitalize" >Pay</span></button>
+                                    <Link to='/dashboard/payment' state={{item:item}} >
+                                        <button className="btn btn-success text-2xl"><FaStripe /><span className="text-lg capitalize" >Pay</span></button>
+                                    </Link>
                                 </td>
                             </tr>)
                         }

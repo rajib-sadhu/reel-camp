@@ -7,6 +7,7 @@ import Dashboard from "../Layout/Dashboard";
 import Cart from "../pages/Dashboard/Cart/Cart";
 import Enrolled from "../pages/Dashboard/Enrolled/Enrolled";
 import PrivateRoute from "./PrivateRoute";
+import Payment from "../pages/Dashboard/Payment/Payment";
 
 
 export const router = createBrowserRouter([
@@ -38,6 +39,10 @@ export const router = createBrowserRouter([
                     {
                         path: 'enrolledClasses',
                         element: <Enrolled />
+                    },
+                    {
+                        path: 'payment',
+                        element: <Payment />
                     }
                 ]
             }
