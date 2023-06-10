@@ -14,8 +14,7 @@ const Navbar = () => {
 
     const [enrollCart] = useEnrollCart();
 
-
-    const totalPrice = enrollCart.reduce((sum,obj)=> sum + obj.price ,0)
+    const totalPrice = enrollCart.reduce((sum,obj)=> sum + obj.price ,0);
 
 
     const links = <>
@@ -55,7 +54,7 @@ const Navbar = () => {
                 </div>
                 <Link to={`/`} className="btn btn-ghost normal-case text-xl">
                     <img className="w-6" src="https://i.ibb.co/4mPr5vP/fav-icon.png" alt="" />
-                    ReelCamp</Link>
+                    Reel Camp</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -89,13 +88,14 @@ const Navbar = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="dropdown dropdown-end">
+                            <div className="dropdown dropdown-end" title={user?.displayName}>
                                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                                     <div className="w-10 rounded-full">
                                         <img src={user?.photoURL || 'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png'} />
                                     </div>
                                 </label>
                                 <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                                    <li className="m-2 text-center">{user?.displayName} </li>
                                     <li className="m-2 text-center">{user?.email} </li>
                                     <li><button className="btn btn-sm" onClick={handleLogout} >Logout</button></li>
                                 </ul>

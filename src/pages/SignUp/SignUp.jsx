@@ -59,7 +59,7 @@ const SignUp = () => {
                     createUser(newUser.email, newUser.password)
                         .then(result => {
                             const loggedUser = result.user;
-                            addNamePhoto(loggedUser, newUser.name, newUser.image)
+                            addNamePhoto(loggedUser, newUser.name, newUser.photoURL)
                                 .then(() => {
                                     console.log('User Created Successfully')
                                     const saveUser = { name: newUser.name, email: newUser.email, photoURL: newUser.photoURL, gender: newUser.gender, role: 'student' }

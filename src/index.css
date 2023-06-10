@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 .dashboard-Links a.active {
-    color: #ffffff;
+    color: #f80000;
+    font-weight: bold;
 }
 .dashboard-Links a {
     background-color: transparent;
