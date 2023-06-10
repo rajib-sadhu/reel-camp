@@ -1,6 +1,7 @@
 
 import { Link } from 'react-router-dom';
 import image from '../../assets/signin-image.svg'
+import Social from '../Shared/Social/Social';
 
 
 const SignIn = () => {
@@ -19,7 +20,7 @@ const SignIn = () => {
                         <img src={image} className='w-[40rem]' alt="" />
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                        <div className="card-body">
+                        <form className="card-body">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
@@ -36,8 +37,13 @@ const SignIn = () => {
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>
                             </div>
+                        </form>
+                        <div className="m-5" >
+                            <div>
+                                <Social />
+                            </div>
                             <div className='text-center mt-3'>
-                                <p>Do not have an account? <Link to='/signUp' className='text-blue-700 underline' >Create now</Link></p>
+                                <p>Do not have any account? <Link to='/signUp' className='text-blue-700 underline' >Create now</Link></p>
                             </div>
                         </div>
                     </div>

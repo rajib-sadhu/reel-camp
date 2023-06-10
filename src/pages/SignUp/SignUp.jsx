@@ -4,6 +4,7 @@ import image from '../../assets/signup-image.svg';
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
+import Social from "../Shared/Social/Social";
 // import app from "../../firebase/firebase.config";
 
 
@@ -44,13 +45,29 @@ const SignUp = () => {
                             addNamePhoto(loggedUser, newUser.name, newUser.image)
                                 .then(() => {
                                     console.log('User Created Successfully')
-                                    Swal.fire({
-                                        icon: 'success',
-                                        title: `Hello ${newUser.name}`,
-                                        text: 'Account create successfully'
-                                    });
-                                    reset();
-                                    navigate("/");
+                                    const saveUser = { name: newUser.name, email: newUser.email, photoURL: newUser.photoURL || 'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png' }
+
+                                    fetch(`http://localhost:5000/users`, {
+                                        method: 'POST',
+                                        headers: {
+                                            'content-type': 'application/json'
+                                        },
+                                        body: JSON.stringify(saveUser)
+                                    })
+                                        .then(res => res.json())
+                                        .then(data => {
+
+                                            if (data.insertedId) {
+                                                reset();
+                                                navigate("/")
+                                                Swal.fire({
+                                                    icon: 'success',
+                                                    title: `Hello ${saveUser.name}`,
+                                                    text: 'Account create successfully'
+                                                });
+
+                                            }
+                                        })
                                 })
                         })
 
@@ -111,7 +128,7 @@ const SignUp = () => {
                                     </p>
                                 </label>
                             </div>
-                            {/* TODO */}
+                            {/* TODO : Add User Gender */}
                             {/* <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Gender</span>
@@ -175,10 +192,15 @@ const SignUp = () => {
                             <div className="form-control mt-6">
                                 <button type="submit" className="btn btn-primary">Create Account</button>
                             </div>
+                        </form>
+                        <div className="m-5" >
+                            <div>
+                                <Social />
+                            </div>
                             <div className='text-center mt-3'>
                                 <p>Already have an account? <Link to='/signIn' className='text-blue-700 underline' >Sign in</Link></p>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

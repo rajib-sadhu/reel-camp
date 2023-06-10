@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { ThemeContext } from "../../../Layout/Main";
 import { FaSun, FaMoon } from 'react-icons/fa';
-import { AuthContext } from "../../../provider/AuthProvider";
 import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
 
 
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut } = useAuth();
     const { ETheme, setETheme } = useContext(ThemeContext)
 
 
@@ -88,13 +88,8 @@ const Navbar = () => {
                                     </div>
                                 </label>
                                 <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                                    <li>
-                                        <a className="justify-between">
-                                            Profile
-                                            <span className="badge">New</span>
-                                        </a>
-                                    </li>
-                                    <li><button onClick={handleLogout} >Logout</button></li>
+                                    <li className="m-2 text-center">{user?.email} </li>
+                                    <li><button className="btn btn-sm" onClick={handleLogout} >Logout</button></li>
                                 </ul>
                             </div>
                         </div>
