@@ -2,11 +2,18 @@
 import { Link } from 'react-router-dom';
 import image from '../../assets/signin-image.svg'
 
+
 const SignIn = () => {
+
+
+
+
+
+
     return (
         <div className='bg-base-200'>
             <h1 className="text-5xl font-bold text-center pt-10">Login now!</h1>
-            <div className="hero min-h-[38rem]">
+            <div className="hero min-h-[38rem] mt-10">
                 <div className="hero-content flex-col lg:flex-row-reverse gap-10">
                     <div className="">
                         <img src={image} className='w-[40rem]' alt="" />
@@ -24,7 +31,7 @@ const SignIn = () => {
                                     <span className="label-text">Password</span>
                                 </label>
                                 <input type="text" placeholder="password" className="input input-bordered" />
-                                
+
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>

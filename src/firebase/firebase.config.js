@@ -7,13 +7,13 @@ import { initializeApp } from "firebase/app";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBm71z2mQBiasNlIh_QtaA0PM-DlAXQETA",
-  authDomain: "rs-reel-camp.firebaseapp.com",
-  projectId: "rs-reel-camp",
-  storageBucket: "rs-reel-camp.appspot.com",
-  messagingSenderId: "28858554104",
-  appId: "1:28858554104:web:04be8a70c138a3ee0d0d0d",
-  measurementId: "G-MMMSK9NZCG"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
+  measurementId: import.meta.env.VITE_measurementId,
 };
 
 // Initialize Firebase

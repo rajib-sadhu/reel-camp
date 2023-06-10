@@ -2,11 +2,13 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { ThemeContext } from "../../../Layout/Main";
 import { FaSun, FaMoon } from 'react-icons/fa';
+import { AuthContext } from "../../../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
 
 
-    const user = false;
+    const { user, logOut } = useContext(AuthContext);
     const { ETheme, setETheme } = useContext(ThemeContext)
 
 
@@ -18,6 +20,21 @@ const Navbar = () => {
         <li><Link to={`/`} >Dashboard</Link></li>
         <li> <Link onClick={() => setETheme(!ETheme)}>Theme {ETheme ? <FaSun></FaSun> : <FaMoon></FaMoon>}</Link> </li>
     </>
+
+    const handleLogout = () => {
+        logOut()
+        .then(() => {
+            Swal.fire({
+                icon: 'success',
+                title: `${user?.email} -  Logout`,
+                showConfirmButton: false,
+                timer: 1500
+            })
+            console.log('User Logout')
+        })
+        .catch((err) => console.log(err))
+    }
+
 
     return (
         <div className="navbar bg-base-100">
@@ -41,7 +58,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 {
-                    !user ?
+                    !user?.email ?
                         <Link to="/signIn">
                             <button className="btn" >Login</button>
                         </Link>
@@ -77,7 +94,7 @@ const Navbar = () => {
                                             <span className="badge">New</span>
                                         </a>
                                     </li>
-                                    <li><a>Logout</a></li>
+                                    <li><button onClick={handleLogout} >Logout</button></li>
                                 </ul>
                             </div>
                         </div>
