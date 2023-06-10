@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
     const addNamePhoto = (currentUser, name, photo) => {
         return updateProfile(currentUser, {
             displayName: name,
-            photoURL: photo || 'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png'
+            photoURL: photo
         })
     }
     const signIn = (email, password) => {

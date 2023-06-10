@@ -20,12 +20,35 @@ const Social = () => {
             .then(result => {
                 const loggedInUser = result.user;
                 console.log(loggedInUser);
-                    Swal.fire({
-                        icon: 'success',
-                        title: `Hello ${loggedInUser?.displayName}`,
-                        text: 'Account create successfully'
-                    });
-                    navigate(from, { replace: true });
+                const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email, photoURL: loggedInUser.photoURL }
+
+                fetch(`http://localhost:5000/users`, {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        if (data.insertedId) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: `Hello ${saveUser.name}`,
+                                text: 'Account create successfully'
+                            });
+                            navigate(from, { replace: true });
+                        }
+                        else if (data.message == 'User already exists') {
+                            Swal.fire({
+                                icon: 'success',
+                                title: `Hello ${saveUser.name}`,
+                                text: 'Account login successfully'
+                            });
+                            navigate(from, { replace: true });
+                        }
+                    })
             }
 
             )

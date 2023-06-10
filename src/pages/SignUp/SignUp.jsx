@@ -27,6 +27,20 @@ const SignUp = () => {
         formData.append('image', data.photoURL[0]);
         console.log('after append formData-', formData)
 
+        Swal.fire({
+            // icon: 'success',
+            imageUrl: 'https://media4.giphy.com/media/KG4PMQ0jyimywxNt8i/giphy.gif?cid=ecf05e47lkefr2ktk7962z6d7wi6o3aqmradxp1zl53k57dj&ep=v1_gifs_search&rid=giphy.gif&ct=g',
+            imageWidth: 150,
+            imageHeight: 150,
+            imageAlt: 'Custom image',
+            title: 'Creating User...',
+            showConfirmButton: false,
+            allowOutsideClick: false,
+            onBeforeOpen: () => {
+                Swal.showLoading();
+            }
+        })
+
         fetch(img_hosting_url, {
             method: "POST",
             body: formData
@@ -37,7 +51,7 @@ const SignUp = () => {
                     const imgURL = imageRes.data.display_url;
                     const { name, email, password } = data;
                     const newUser = { name, email, image: imgURL, password }
-                    console.log(newUser);
+
 
                     createUser(newUser.email, newUser.password)
                         .then(result => {
@@ -45,7 +59,7 @@ const SignUp = () => {
                             addNamePhoto(loggedUser, newUser.name, newUser.image)
                                 .then(() => {
                                     console.log('User Created Successfully')
-                                    const saveUser = { name: newUser.name, email: newUser.email, photoURL: newUser.photoURL || 'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png' }
+                                    const saveUser = { name: newUser.name, email: newUser.email, photoURL: newUser.photoURL }
 
                                     fetch(`http://localhost:5000/users`, {
                                         method: 'POST',
@@ -60,11 +74,14 @@ const SignUp = () => {
                                             if (data.insertedId) {
                                                 reset();
                                                 navigate("/")
+                                                Swal.close();
+
                                                 Swal.fire({
                                                     icon: 'success',
-                                                    title: `Hello ${saveUser.name}`,
-                                                    text: 'Account create successfully'
-                                                });
+                                                    title: `Account create successfully ${saveUser?.name} `,
+                                                    showConfirmButton: false,
+                                                    timer: 1500
+                                                })
 
                                             }
                                         })
