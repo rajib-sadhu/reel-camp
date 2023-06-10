@@ -14,15 +14,15 @@ const Navbar = () => {
 
     const [enrollCart] = useEnrollCart();
 
-    const totalPrice = enrollCart.reduce((sum,obj)=> sum + obj.price ,0);
+    const totalPrice = enrollCart.reduce((sum, obj) => sum + obj.price, 0);
 
 
     const links = <>
         <li><Link to={`/`} >Home</Link></li>
-        <li><Link to={`/`} >About</Link></li>
         <li><Link to={`/`} >Classes</Link></li>
         <li><Link to={`/`} >Instructors</Link></li>
-        <li><Link to={`/dashboard`} >Dashboard</Link></li>
+        {user && <li><Link to={`/dashboard/selectClasses`} >Dashboard</Link></li>}
+        <li><Link to={`/`} >About</Link></li>
         <li> <button onClick={() => setETheme(!ETheme)}>Theme {ETheme ? <FaSun></FaSun> : <FaMoon></FaMoon>}</button> </li>
     </>
 
@@ -81,7 +81,7 @@ const Navbar = () => {
                                 <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
                                     <div className="card-body">
                                         <span className="font-bold text-lg"> {enrollCart.length || 0} Classes</span>
-                                        <span className="text-info">Subtotal: ${totalPrice.toFixed(2) || 0 }</span>
+                                        <span className="text-info">Subtotal: ${totalPrice.toFixed(2) || 0}</span>
                                         <div className="card-actions">
                                             <Link to="/dashboard/selectClasses" className="btn btn-primary btn-block">View enroll cart</Link>
                                         </div>

@@ -9,7 +9,7 @@ const PrivateRoute = ({ children }) => {
     const { user, loading } = useAuth();
     const location = useLocation();
 
-    if (loading) {
+    if (loading ) {
         return <div className="min-h-screen flex items-center justify-center" >
             <LoadingAnimation />
         </div>
@@ -18,7 +18,7 @@ const PrivateRoute = ({ children }) => {
         return children;
     }
     else {
-        return <Navigate to="/login" state={{ from: location }} replace />
+        return <Navigate to="/signIn" state={{ from: location }} replace />
     }
 
 };

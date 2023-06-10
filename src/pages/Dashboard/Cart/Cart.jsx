@@ -1,17 +1,45 @@
 import useEnrollCart from "../../../hooks/useEnrollCart";
-import {AiFillDelete} from 'react-icons/ai';
-import {FaStripe} from 'react-icons/fa';
+import { AiFillDelete } from 'react-icons/ai';
+import { FaStripe } from 'react-icons/fa';
+import Swal from "sweetalert2";
 
 
 const Cart = () => {
 
-    const [enrollCart] = useEnrollCart();
+    const [enrollCart, ,refetch] = useEnrollCart();
 
-    const handleDelete = () =>{
+    const handleDelete = (item) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
 
+                fetch(`http://localhost:5000/selectClasses/${item._id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        if (data.deletedCount > 0) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                            refetch();
+                        }
+                    })
+            }
+        })
     }
 
-    if(!enrollCart.length){
+    if (!enrollCart.length) {
         return <div className="text-center" > No classes in enroll cart </div>
     }
 
@@ -33,9 +61,9 @@ const Cart = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            enrollCart.map((item, index )=> <tr key={item._id} >
+                            enrollCart.map((item, index) => <tr key={item._id} >
                                 <th>
-                                    {index+1}
+                                    {index + 1}
                                 </th>
                                 <td>
                                     <div className="flex items-center space-x-3">
@@ -49,10 +77,10 @@ const Cart = () => {
                                 <td>{item?.className}</td>
                                 <td>${item?.price}</td>
                                 <td>
-                                    <button onClick={handleDelete} className="btn btn-error text-2xl"><AiFillDelete/></button>
+                                    <button onClick={()=>handleDelete(item)} className="btn btn-error text-2xl"><AiFillDelete /></button>
                                 </td>
                                 <td>
-                                    <button className="btn btn-success text-2xl"><FaStripe/><span className="text-lg capitalize" >Pay</span></button>
+                                    <button className="btn btn-success text-2xl"><FaStripe /><span className="text-lg capitalize" >Pay</span></button>
                                 </td>
                             </tr>)
                         }

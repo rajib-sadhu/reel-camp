@@ -6,37 +6,38 @@ import SignUp from "../pages/SignUp/SignUp";
 import Dashboard from "../Layout/Dashboard";
 import Cart from "../pages/Dashboard/Cart/Cart";
 import Enrolled from "../pages/Dashboard/Enrolled/Enrolled";
+import PrivateRoute from "./PrivateRoute";
 
 
 export const router = createBrowserRouter([
     {
-        path:'/',
-        element:<Main/>,
-        errorElement:'',
-        children:[
+        path: '/',
+        element: <Main />,
+        errorElement: '',
+        children: [
             {
-                path:'/',
-                element:<Home/>
+                path: '/',
+                element: <Home />
             },
             {
-                path:'signIn',
-                element:<SignIn/>,
+                path: 'signIn',
+                element: <SignIn />,
             },
             {
-                path:'signUp',
-                element:<SignUp/>
+                path: 'signUp',
+                element: <SignUp />
             },
             {
-                path:'dashboard',
-                element:<Dashboard/>,
-                children:[
+                path: 'dashboard',
+                element: <PrivateRoute><Dashboard /></PrivateRoute>,
+                children: [
                     {
-                        path:'selectClasses',
-                        element:<Cart/>
+                        path: 'selectClasses',
+                        element: <Cart />
                     },
                     {
-                        path:'enrolledClasses',
-                        element:<Enrolled/>
+                        path: 'enrolledClasses',
+                        element: <Enrolled />
                     }
                 ]
             }
