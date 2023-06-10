@@ -8,6 +8,7 @@ import Cart from "../pages/Dashboard/Cart/Cart";
 import Enrolled from "../pages/Dashboard/Enrolled/Enrolled";
 import PrivateRoute from "./PrivateRoute";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import AllClasses from "../pages/AllClasses/AllClasses";
 
 
 export const router = createBrowserRouter([
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />
+            },
+            {
+                path: '/allClasses',
+                element: <AllClasses />
             },
             {
                 path: 'signIn',

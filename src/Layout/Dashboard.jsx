@@ -1,3 +1,4 @@
+import { Fade } from "react-awesome-reveal";
 
 import { NavLink, Outlet } from "react-router-dom";
 import LoadingAnimation from "../components/LoadingAnimation";
@@ -72,7 +73,11 @@ const Dashboard = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="stat-value">{userInfo?.name}</div>
+                    <div className="stat-value">
+                        <Fade delay={1e3} cascade damping={1e-1}>
+                            {userInfo?.name}
+                        </Fade>
+                    </div>
                     <div className="stat-title text-lg">{userInfo?.email}</div>
                     <div className="stat-desc text-secondary capitalize text-sm"> Role: {userInfo?.role}</div>
                 </div>
@@ -86,7 +91,9 @@ const Dashboard = () => {
                 </ul>
             </div>
             <div>
-                <Outlet />
+                <Fade delay={1e3} cascade damping={1e-1}>
+                    <Outlet />
+                </Fade>
             </div>
 
 
