@@ -6,7 +6,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
 import Social from "../Shared/Social/Social";
 // import app from "../../firebase/firebase.config";
-
+import loadingAnimation from '../../assets/loading-animation.gif';
 
 const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
 
@@ -22,15 +22,17 @@ const SignUp = () => {
     const onSubmit = data => {
         console.log(data);
 
+
+
         const formData = new FormData();
         console.log('before formData-', formData)
-        formData.append('image', data.photoURL[0]);
+        formData.append('image', data.photoURL[0] );
         console.log('after append formData-', formData)
 
         Swal.fire({
             // icon: 'success',
-            imageUrl: 'https://media4.giphy.com/media/KG4PMQ0jyimywxNt8i/giphy.gif?cid=ecf05e47lkefr2ktk7962z6d7wi6o3aqmradxp1zl53k57dj&ep=v1_gifs_search&rid=giphy.gif&ct=g',
-            imageWidth: 150,
+            imageUrl: loadingAnimation,
+            imageWidth: 250,
             imageHeight: 150,
             imageAlt: 'Custom image',
             title: 'Creating User...',
@@ -49,8 +51,8 @@ const SignUp = () => {
             .then(imageRes => {
                 if (imageRes.success) {
                     const imgURL = imageRes.data.display_url;
-                    const { name, email, password } = data;
-                    const newUser = { name, email, image: imgURL, password }
+                    const { name, email, password, gender } = data;
+                    const newUser = { name, email, image: imgURL, password, gender }
 
 
                     createUser(newUser.email, newUser.password)
@@ -59,7 +61,7 @@ const SignUp = () => {
                             addNamePhoto(loggedUser, newUser.name, newUser.image)
                                 .then(() => {
                                     console.log('User Created Successfully')
-                                    const saveUser = { name: newUser.name, email: newUser.email, photoURL: newUser.photoURL }
+                                    const saveUser = { name: newUser.name, email: newUser.email, photoURL: newUser.photoURL, gender: newUser.gender }
 
                                     fetch(`http://localhost:5000/users`, {
                                         method: 'POST',
@@ -146,27 +148,38 @@ const SignUp = () => {
                                 </label>
                             </div>
                             {/* TODO : Add User Gender */}
-                            {/* <div className="form-control">
+                            <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Gender</span>
                                 </label>
                                 <div className='flex input input-bordered' >
-                                        <label className="label cursor-pointer">
-                                            <span className="label-text">Male</span>
-                                            <input type="radio" name="gender" value="M" className="radio checked:bg-red-500 ms-1" />
-                                        </label>
-                                    
-                                        <label className="label cursor-pointer">
-                                            <span className="label-text">Female</span>
-                                            <input type="radio" name="gender" value="F" className="radio checked:bg-blue-500 ms-1" checked />
-                                        </label>
-                                    
-                                        <label className="label cursor-pointer">
-                                            <span className="label-text">Others</span>
-                                            <input type="radio" name="gender" value="O" className="radio checked:bg-green-500 ms-1" checked />
-                                        </label>
+                                    <label className="label cursor-pointer">
+                                        <span className="label-text">Male</span>
+                                        <input type="radio" name="gender" value="M" className="radio checked:bg-red-500 ms-1"
+                                            {...register("gender", { required: true })}
+                                        />
+                                    </label>
+
+                                    <label className="label cursor-pointer">
+                                        <span className="label-text">Female</span>
+                                        <input type="radio" name="gender" value="F" className="radio checked:bg-blue-500 ms-1"
+                                            {...register("gender", { required: true })}
+                                        />
+                                    </label>
+
+                                    <label className="label cursor-pointer">
+                                        <span className="label-text">Others</span>
+                                        <input type="radio" name="gender" value="O" className="radio checked:bg-green-500 ms-1"
+                                            {...register("gender", { required: true })}
+                                        />
+                                    </label>
                                 </div>
-                            </div> */}
+                                <label className="label">
+                                    <p className="label-text text-right text-red-600">
+                                        {errors.gender?.type === 'required' && 'Gender is required'}
+                                    </p>
+                                </label>
+                            </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
