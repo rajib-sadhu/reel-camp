@@ -1,12 +1,64 @@
+import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import useClass from "../../hooks/useClass";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ClassCard = ({ item }) => {
 
     const { user } = useAuth();
-    const [,, refetch] = useClass();
-    const handleEnroll = () => {
+    const [, , refetch] = useClass();
 
+    const navigate = useNavigate();
+    const location = useLocation();
+
+
+    const handleEnroll = () => {
+        if (user) {
+
+            const enrollCart = {
+                classId: item._id,
+                className: item.className,
+                instructorName: item.instructorName,
+                image: item.image,
+                price: item.price,
+                email: user.email
+            };
+
+            fetch('http://localhost:5000/selectClasses', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(enrollCart)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data)
+                    if (data.insertedId) {
+                        Swal.fire({
+                            title: 'Class add to enroll cart',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        refetch();
+                    }
+                })
+        }
+        else {
+            Swal.fire({
+                title: 'Please login to enroll class',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Login Now!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/signIn', { state: { from: location } })
+                }
+            })
+        }
     }
 
 
