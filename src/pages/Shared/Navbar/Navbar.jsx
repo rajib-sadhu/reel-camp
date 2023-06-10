@@ -18,7 +18,7 @@ const Navbar = () => {
         <li><Link to={`/`} >Classes</Link></li>
         <li><Link to={`/`} >Instructors</Link></li>
         <li><Link to={`/`} >Dashboard</Link></li>
-        <li> <Link onClick={() => setETheme(!ETheme)}>Theme {ETheme ? <FaSun></FaSun> : <FaMoon></FaMoon>}</Link> </li>
+        <li> <button onClick={() => setETheme(!ETheme)}>Theme {ETheme ? <FaSun></FaSun> : <FaMoon></FaMoon>}</button> </li>
     </>
 
     const handleLogout = () => {
