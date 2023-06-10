@@ -26,7 +26,7 @@ const SignUp = () => {
 
         const formData = new FormData();
         console.log('before formData-', formData)
-        formData.append('image', data.photoURL[0] );
+        formData.append('image', data.photoURL[0]);
         console.log('after append formData-', formData)
 
         Swal.fire({
@@ -49,10 +49,11 @@ const SignUp = () => {
         })
             .then(res => res.json())
             .then(imageRes => {
+                console.log(imageRes)
                 if (imageRes.success) {
                     const imgURL = imageRes.data.display_url;
                     const { name, email, password, gender } = data;
-                    const newUser = { name, email, image: imgURL, password, gender }
+                    const newUser = { name, email, photoURL: imgURL, password, gender }
 
 
                     createUser(newUser.email, newUser.password)
@@ -61,7 +62,7 @@ const SignUp = () => {
                             addNamePhoto(loggedUser, newUser.name, newUser.image)
                                 .then(() => {
                                     console.log('User Created Successfully')
-                                    const saveUser = { name: newUser.name, email: newUser.email, photoURL: newUser.photoURL, gender: newUser.gender }
+                                    const saveUser = { name: newUser.name, email: newUser.email, photoURL: newUser.photoURL, gender: newUser.gender, role: 'student' }
 
                                     fetch(`http://localhost:5000/users`, {
                                         method: 'POST',

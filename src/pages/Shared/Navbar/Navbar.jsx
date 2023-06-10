@@ -14,12 +14,16 @@ const Navbar = () => {
 
     const [enrollCart] = useEnrollCart();
 
+
+    const totalPrice = enrollCart.reduce((sum,obj)=> sum + obj.price ,0)
+
+
     const links = <>
         <li><Link to={`/`} >Home</Link></li>
         <li><Link to={`/`} >About</Link></li>
         <li><Link to={`/`} >Classes</Link></li>
         <li><Link to={`/`} >Instructors</Link></li>
-        <li><Link to={`/`} >Dashboard</Link></li>
+        <li><Link to={`/dashboard`} >Dashboard</Link></li>
         <li> <button onClick={() => setETheme(!ETheme)}>Theme {ETheme ? <FaSun></FaSun> : <FaMoon></FaMoon>}</button> </li>
     </>
 
@@ -78,9 +82,9 @@ const Navbar = () => {
                                 <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
                                     <div className="card-body">
                                         <span className="font-bold text-lg"> {enrollCart.length || 0} Classes</span>
-                                        <span className="text-info">Subtotal: $999</span>
+                                        <span className="text-info">Subtotal: ${totalPrice.toFixed(2) || 0 }</span>
                                         <div className="card-actions">
-                                            <button className="btn btn-primary btn-block">View cart</button>
+                                            <Link to="/dashboard/selectClasses" className="btn btn-primary btn-block">View enroll cart</Link>
                                         </div>
                                     </div>
                                 </div>
