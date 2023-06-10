@@ -1,16 +1,18 @@
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
-import useClass from "../../hooks/useClass";
 import { useLocation, useNavigate } from "react-router-dom";
+import useEnrollCart from "../../hooks/useEnrollCart";
 
 const ClassCard = ({ item }) => {
 
     const { user } = useAuth();
-    const [, , refetch] = useClass();
+    const [enrollCart, , refetch] = useEnrollCart();
+  
 
     const navigate = useNavigate();
     const location = useLocation();
 
+    const existClass = enrollCart.find(c => c.classId === item._id);
 
     const handleEnroll = () => {
         if (user) {
@@ -24,26 +26,40 @@ const ClassCard = ({ item }) => {
                 email: user.email
             };
 
-            fetch('http://localhost:5000/selectClasses', {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(enrollCart)
-            })
-                .then(res => res.json())
-                .then(data => {
-                    // console.log(data)
-                    if (data.insertedId) {
-                        Swal.fire({
-                            title: 'Class add to enroll cart',
-                            icon: 'success',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        refetch();
-                    }
+
+
+            if (!existClass) {
+                fetch('http://localhost:5000/selectClasses', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(enrollCart)
                 })
+                    .then(res => res.json())
+                    .then(data => {
+                        // console.log(data)
+                        if (data.insertedId) {
+                            Swal.fire({
+                                title: 'Class add to enroll cart',
+                                icon: 'success',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            refetch();
+                        }
+                    })
+            }
+            else{
+                Swal.fire({
+                    title: 'This class already added!',
+                    icon: 'error',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+
+
         }
         else {
             Swal.fire({
@@ -73,7 +89,7 @@ const ClassCard = ({ item }) => {
                     <p>Available Seats: {item?.availableSeats} </p>
                 </p>
                 <div className="card-actions justify-end">
-                    <button onClick={handleEnroll} className="btn btn-primary">Add Enroll Cart</button>
+                    <button onClick={() => handleEnroll(item)} className="btn btn-primary">Add Enroll Cart</button>
                 </div>
             </div>
         </div>
