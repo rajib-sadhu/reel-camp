@@ -104,8 +104,6 @@ const CheckoutForm = ({ price, item }) => {
                     }
                 })
         }
-
-
     }
 
     return (

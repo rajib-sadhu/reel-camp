@@ -53,7 +53,8 @@ const Cart = () => {
                         <tr>
                             <th>#</th>
                             <th>Images</th>
-                            <th>Names</th>
+                            <th>Class Names</th>
+                            <th>Instructor Names</th>
                             <th>Price</th>
                             <th>Delete</th>
                             <th>Enrolled</th>
@@ -76,6 +77,7 @@ const Cart = () => {
                                     </div>
                                 </td>
                                 <td>{item?.className}</td>
+                                <td>{item?.instructorName}</td>
                                 <td>${item?.price}</td>
                                 <td>
                                     <button onClick={() => handleDelete(item)} className="btn btn-error text-2xl"><AiFillDelete /></button>
