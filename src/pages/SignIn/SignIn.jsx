@@ -50,20 +50,23 @@ const SignIn = () => {
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-                            <div className="form-control">
+                            <div className="">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
                                 <input type="email" placeholder="email" className="input input-bordered"
                                     {...register("email", { required: true })}
                                 />
-                                <label className="label">
-                                    <p className="label-text text-right text-red-600">
-                                        {errors.email?.type === 'required' && 'Email is required'}
-                                    </p>
-                                </label>
+                                {
+                                    errors.email?.type === 'required' &&
+                                    <label className="label">
+                                        <p className="label-text text-right text-red-600">
+                                            Email is required
+                                        </p>
+                                    </label>
+                                }
                             </div>
-                            <div className="form-control">
+                            <div className="">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
@@ -75,14 +78,17 @@ const SignIn = () => {
                                         pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
                                     })}
                                 />
-                                <label className="label">
-                                    <p className="label-text text-right text-red-600">
-                                        {errors.password?.type === 'required' && 'Password is required'}
-                                        {errors.password?.type === 'minLength' && 'Password must be 6 characters'}
-                                        {errors.password?.type === 'maxLength' && 'Password must be less than 20 characters'}
-                                        {errors.password?.type === 'pattern' && 'Password must have one Uppercase one lower case, one number and one special character.'}
-                                    </p>
-                                </label>
+                                {
+                                    errors &&
+                                    <label className="label">
+                                        <p className="label-text text-right text-red-600">
+                                            {errors.password?.type === 'required' && 'Password is required'}
+                                            {errors.password?.type === 'minLength' && 'Password must be 6 characters'}
+                                            {errors.password?.type === 'maxLength' && 'Password must be less than 20 characters'}
+                                            {errors.password?.type === 'pattern' && 'Password must have one Uppercase one lower case, one number and one special character.'}
+                                        </p>
+                                    </label>
+                                }
                             </div>
                             <div className="form-control mt-6">
                                 <button type='submit' className="btn btn-primary">Login</button>

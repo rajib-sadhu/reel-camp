@@ -9,6 +9,8 @@ import Enrolled from "../pages/Dashboard/Enrolled/Enrolled";
 import PrivateRoute from "./PrivateRoute";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import AllClasses from "../pages/AllClasses/AllClasses";
+import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import AdminRoute from "./AdminRoute";
 
 
 export const router = createBrowserRouter([
@@ -37,6 +39,7 @@ export const router = createBrowserRouter([
                 path: 'dashboard',
                 element: <PrivateRoute><Dashboard /></PrivateRoute>,
                 children: [
+                    // For Users
                     {
                         path: 'selectClasses',
                         element: <Cart />
@@ -48,6 +51,12 @@ export const router = createBrowserRouter([
                     {
                         path: 'payment',
                         element: <Payment />
+                    },
+
+                    // For Admin
+                    {
+                        path: 'allUsers',
+                        element: <AdminRoute><AllUsers /></AdminRoute>
                     }
                 ]
             }

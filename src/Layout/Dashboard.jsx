@@ -88,6 +88,7 @@ const Dashboard = () => {
                 <ul className="menu menu-vertical lg:menu-horizontal bg-base-200 rounded-box text-center mx-auto dashboard-Links">
                     <li><NavLink to='/dashboard/selectClasses' >My Selected Classes</NavLink></li>
                     <li><NavLink to='/dashboard/enrolledClasses' >My Enrolled Classes</NavLink></li>
+                    { userInfo?.role==='admin' && <li><NavLink to='/dashboard/allUsers' >All Users</NavLink></li> }
                 </ul>
             </div>
             <div>
