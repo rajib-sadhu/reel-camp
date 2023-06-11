@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { FaTrash, FaUserShield } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 
@@ -16,27 +16,71 @@ const AllUsers = () => {
 
     const handleRole = async (user) => {
 
-        const { value: fruit } = await Swal.fire({
+        const { value: role } = await Swal.fire({
             title: 'Select user role',
             input: 'select',
             inputOptions: {
-                'admin':'admin',
-                'student':'student'
+                'admin': 'admin',
+                'instructor': 'instructor',
+                'student': 'student'
             },
             inputPlaceholder: 'Select role',
             showCancelButton: true,
             inputValidator: (value) => {
                 return new Promise((resolve) => {
-                  
-                        resolve()
-                    
+                    fetch(`http://localhost:5000/users/admin/${user._id}?role=${value}`, {
+                        method: 'PATCH'
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log('response data', data);
+                            if (data.modifiedCount) {
+                                refetch();
+                                resolve();
+                            }
+                        })
                 })
             }
         })
 
-        if (fruit) {
-            Swal.fire(`You selected: ${fruit}`)
+        if (role) {
+            Swal.fire(`You selected: ${role}`)
         }
+    }
+
+
+    const handleDelete = (user) => {
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                fetch(`http://localhost:5000/users/${user._id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        if (data.deletedCount > 0) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                            refetch();
+                        }
+                    })
+                    .catch(err => console.log(err))
+            }
+        })
+
     }
 
 
