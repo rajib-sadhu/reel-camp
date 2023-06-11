@@ -50,7 +50,10 @@ const Dashboard = () => {
 
                     {
                         userInfo?.role === 'admin' &&
-                        <li><NavLink to='/dashboard/allUsers' >All Users</NavLink></li>
+                        <>
+                            <li><NavLink to='/dashboard/allUsers' >Manage Users</NavLink></li>
+                            <li><NavLink to='/dashboard/manageClasses' >Manage Classes</NavLink></li>
+                        </>
                     }
                     {
                         userInfo?.role === 'student' &&
