@@ -59,7 +59,7 @@ const Dashboard = () => {
                         userInfo?.role === 'instructor' &&
                         <>
                             <li><NavLink to='/dashboard/addClass' >Add a class</NavLink></li>
-                            <li><NavLink to='/dashboard/myClass' >My Classes</NavLink></li>
+                            <li><NavLink to='/dashboard/myClass' >My classes</NavLink></li>
                         </>
                     }
                     {
