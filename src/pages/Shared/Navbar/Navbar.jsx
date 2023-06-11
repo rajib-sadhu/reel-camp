@@ -22,7 +22,7 @@ const Navbar = () => {
         <li><Link to={`/`} >Home</Link></li>
         <li><Link to={`/allClasses`} >Classes</Link></li>
         <li><Link to={`/`} >Instructors</Link></li>
-        {user && <li><Link to={`/dashboard/selectClasses`} >Dashboard</Link></li>}
+        {user && <li><Link to={`/dashboard`} >Dashboard</Link></li>}
         <li><Link to={`/`} >About</Link></li>
         <li> <button onClick={() => setETheme(!ETheme)}>Theme {ETheme ? <FaSun></FaSun> : <FaMoon></FaMoon>}</button> </li>
     </>

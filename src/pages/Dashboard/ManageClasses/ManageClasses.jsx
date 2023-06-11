@@ -75,7 +75,7 @@ const ManageClasses = () => {
                             <img src={item?.image || 'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png'} className="h-[15rem] w-full object-cover" alt="" />
                             <div className="absolute z-20 -bottom-[40px] left-[20px]">
                                 <div className="flex items-end gap-2">
-                                    <img src={item?.instructorImage} className="w-20 h-20 object-cover rounded-[50%] " alt="" />
+                                    <img src={item?.instructorImage} className="w-20 h-20 object-cover rounded-[50%] border-4" alt="" />
                                     <h1 className="font-semibold mb-2 text-lg" ><span className="text-xs" >Instructor:</span> {item?.instructorName}</h1>
                                 </div>
                             </div>

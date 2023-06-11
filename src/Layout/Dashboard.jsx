@@ -37,7 +37,7 @@ const Dashboard = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="stat-value">
+                            <div className="stat-value text-2xl">
                                 <Fade delay={1e3} cascade damping={1e-1}>
                                     {userInfo?.name}
                                 </Fade>
@@ -53,6 +53,13 @@ const Dashboard = () => {
                         <>
                             <li><NavLink to='/dashboard/allUsers' >Manage Users</NavLink></li>
                             <li><NavLink to='/dashboard/manageClasses' >Manage Classes</NavLink></li>
+                        </>
+                    }
+                    {
+                        userInfo?.role === 'instructor' &&
+                        <>
+                            <li><NavLink to='/dashboard/addClass' >Add a class</NavLink></li>
+                            <li><NavLink to='/dashboard/myClass' >My Classes</NavLink></li>
                         </>
                     }
                     {

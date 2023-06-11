@@ -12,6 +12,8 @@ import AllClasses from "../pages/AllClasses/AllClasses";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AdminRoute from "./AdminRoute";
 import ManageClasses from "../pages/Dashboard/ManageClasses/ManageClasses";
+import AddClass from "../pages/Dashboard/AddClass/AddClass";
+import MyClass from "../pages/Dashboard/MyClass/MyClass";
 
 
 export const router = createBrowserRouter([
@@ -52,6 +54,15 @@ export const router = createBrowserRouter([
                     {
                         path: 'payment',
                         element: <Payment />
+                    },
+                    // For Instructor
+                    {
+                        path:'addClass',
+                        element:<AddClass/>
+                    },
+                    {
+                        path:'myClass',
+                        element:<MyClass/>
                     },
 
                     // For Admin

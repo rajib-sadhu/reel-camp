@@ -22,8 +22,6 @@ const SignUp = () => {
     const onSubmit = data => {
         console.log(data);
 
-
-
         const formData = new FormData();
         console.log('before formData-', formData)
         formData.append('image', data.photoURL[0]);
