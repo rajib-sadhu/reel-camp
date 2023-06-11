@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { ThemeContext } from "../../../Layout/Main";
 import { FaSun, FaMoon } from 'react-icons/fa';
@@ -8,6 +8,7 @@ import useEnrollCart from "../../../hooks/useEnrollCart";
 
 const Navbar = () => {
 
+    const navigate = useNavigate();
 
     const { user, logOut } = useAuth();
     const { ETheme, setETheme } = useContext(ThemeContext)
@@ -29,6 +30,7 @@ const Navbar = () => {
     const handleLogout = () => {
         logOut()
             .then(() => {
+                navigate('/');
                 Swal.fire({
                     icon: 'success',
                     title: `${user?.email} -  Logout`,

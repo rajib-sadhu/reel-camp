@@ -26,6 +26,8 @@ const AllUsers = () => {
             },
             inputPlaceholder: 'Select role',
             showCancelButton: true,
+            width:'36rem'
+            ,
             inputValidator: (value) => {
                 return new Promise((resolve) => {
                     fetch(`http://localhost:5000/users/admin/${user._id}?role=${value}`, {
@@ -91,12 +93,12 @@ const AllUsers = () => {
                 <title>Reel Camp | All Users</title>
             </Helmet>
             <div>
-                <div className="stats shadow">
-                    <div className="stat">
-                        <div className="stat-title">Total Users</div>
-                        <div className="stat-value">{users.length}</div>
-                    </div>
+            <div className="stats shadow my-5">
+                <div className="stat place-items-center">
+                    <div className="stat-title">Total Users</div>
+                    <div className="stat-value">{users.length}</div>
                 </div>
+            </div>
 
                 <div className="overflow-x-auto">
                     <table className="table w-full">

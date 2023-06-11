@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import useEnrollCart from "../../../hooks/useEnrollCart";
 import { AiFillDelete } from 'react-icons/ai';
 import { FaStripe } from 'react-icons/fa';
@@ -5,9 +6,11 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
+
 const Cart = () => {
 
     const [enrollCart, , refetch] = useEnrollCart();
+    const totalPriceCart = enrollCart.reduce((sum, obj) => sum + obj.price, 0);
 
     const handleDelete = (item) => {
         Swal.fire({
@@ -41,11 +44,29 @@ const Cart = () => {
     }
 
     if (!enrollCart.length) {
-        return <div className="text-center" > No classes in enroll cart </div>
+        return <div className="text-center my-10" > No classes in cart </div>
     }
 
     return (
         <div className="" >
+
+            <Helmet>
+                <title>Reel Camp | Class Cart</title>
+            </Helmet>
+
+            <div className="stats shadow my-5">
+
+                <div className="stat place-items-center">
+                    <div className="stat-title">Total Cart Items</div>
+                    <div className="stat-value">{enrollCart.length} </div>
+                </div>
+
+                <div className="stat place-items-center">
+                    <div className="stat-title">Total Cart Value</div>
+                    <div className="stat-value text-secondary">${totalPriceCart}</div>
+                </div>
+            </div>
+
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
@@ -83,7 +104,7 @@ const Cart = () => {
                                     <button onClick={() => handleDelete(item)} className="btn btn-error text-2xl"><AiFillDelete /></button>
                                 </td>
                                 <td>
-                                    <Link to='/dashboard/payment' state={{item:item}} >
+                                    <Link to='/dashboard/payment' state={{ item: item }} >
                                         <button className="btn btn-success text-2xl"><FaStripe /><span className="text-lg capitalize" >Pay</span></button>
                                     </Link>
                                 </td>

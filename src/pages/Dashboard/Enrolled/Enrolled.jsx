@@ -1,12 +1,14 @@
 
 import usePayments from "../../../hooks/usePayments";
 import useClass from "../../../hooks/useClass";
+import { Helmet } from "react-helmet";
 
 
 
 const Enrolled = () => {
 
     const [payments] = usePayments();
+    const totalPriceExpense = payments.reduce((sum, obj) => sum + obj.price, 0);
     const [classes] = useClass();
 
 
@@ -16,8 +18,28 @@ const Enrolled = () => {
         return name;
     }
 
+    if (!payments.length) {
+        return <div className="text-center my-10" > No classes in enrolled </div>
+    }
+
     return (
         <div>
+            <Helmet>
+                <title>Reel Camp | Enrolled Classes</title>
+            </Helmet>
+
+            <div className="stats shadow my-5">
+                <div className="stat place-items-center">
+                    <div className="stat-title">Total Enrolled Classes</div>
+                    <div className="stat-value">{payments.length}</div>
+                </div>
+
+                <div className="stat place-items-center">
+                    <div className="stat-title">Total Expenses</div>
+                    <div className="stat-value text-secondary">${totalPriceExpense.toFixed(2)}</div>
+                </div>
+            </div>
+
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
