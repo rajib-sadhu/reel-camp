@@ -44,6 +44,7 @@ const MyClass = () => {
                                 <th>Status</th>
                                 <th>Enrolled Students</th>
                                 <th>Feedback</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -70,6 +71,7 @@ const MyClass = () => {
 
                                     <td className="text-center"> {item?.enrolled || 0}</td>
                                     <td> {item?.adminFeedback}</td>
+                                    <td> <button className="btn btn-success" >Update</button> </td>
                                 </tr>)
                             }
                         </tbody>

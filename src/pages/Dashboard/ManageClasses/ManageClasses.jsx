@@ -142,7 +142,7 @@ const ManageClasses = () => {
                                 </div>
                                 <div>
                                     <div className="flex flex-col gap-2" >
-                                        <button onClick={() => handleClassStatus(item, 'active')} disabled={item?.instructorStatus == 'denied'} className="btn btn-xs text-white bg-green-600" >Approved</button>
+                                        <button onClick={() => handleClassStatus(item, 'active')} disabled={item?.instructorStatus == 'denied' || item?.instructorStatus == 'active' } className="btn btn-xs text-white bg-green-600" >Approved</button>
                                         <button onClick={() => handleClassStatus(item, 'denied')} disabled={item?.instructorStatus == 'active' || item?.instructorStatus == 'denied'} className="btn btn-xs text-white bg-red-600" >Denied</button>
                                         <a onClick={() => setItemId(item._id)} className="btn btn-xs" href="#my_modal_8">Send Feedback</a>
                                     </div>
