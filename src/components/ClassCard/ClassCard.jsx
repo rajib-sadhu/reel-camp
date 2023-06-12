@@ -2,12 +2,16 @@ import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import useEnrollCart from "../../hooks/useEnrollCart";
+import useAdmin from "../../hooks/useAdmin";
+import useInstructor from "../../hooks/useInstructor";
 
 const ClassCard = ({ item }) => {
 
     const { user } = useAuth();
     const [enrollCart, , refetch] = useEnrollCart();
-  
+
+    const [isAdmin] = useAdmin();
+    const [isInstructor] = useInstructor();
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -25,8 +29,6 @@ const ClassCard = ({ item }) => {
                 price: item.price,
                 email: user.email
             };
-
-
 
             if (!existClass) {
                 fetch('http://localhost:5000/selectClasses', {
@@ -50,7 +52,7 @@ const ClassCard = ({ item }) => {
                         }
                     })
             }
-            else{
+            else {
                 Swal.fire({
                     title: 'This class already added!',
                     icon: 'error',
@@ -79,7 +81,8 @@ const ClassCard = ({ item }) => {
 
 
     return (
-        <div className="card card-side bg-base-100 shadow-xl h-[18rem]">
+        <div className={`card card-side bg-base-100 shadow-xl h-[18rem] 
+        ${!item?.availableSeats? 'bg-red-600 text-white':''}`}>
             <figure><img className="object-cover w-[20rem] h-full" src={item?.image} alt="Movie" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{item?.className}</h2>
@@ -89,7 +92,7 @@ const ClassCard = ({ item }) => {
                     <p>Available Seats: {item?.availableSeats} </p>
                 </p>
                 <div className="card-actions justify-end">
-                    <button onClick={() => handleEnroll(item)} className="btn btn-primary">Add Enroll Cart</button>
+                    <button disabled={isAdmin || isInstructor || item?.availableSeats==0 } onClick={() => handleEnroll(item)} className="btn btn-primary">Add Enroll Cart</button>
                 </div>
             </div>
         </div>

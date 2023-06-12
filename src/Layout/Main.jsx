@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, ScrollRestoration } from "react-router-dom";
 import Navbar from "../pages/Shared/Navbar/Navbar";
 import Footer from "../pages/Shared/Footer/Footer";
 import { createContext, useState } from "react";
@@ -18,6 +18,7 @@ const Main = () => {
                 </div>
                 <div className="md:min-h-[38rem] min-h-screen" >
                     <Outlet />
+                    <ScrollRestoration/>
                 </div>
                 <Footer />
             </div>
