@@ -14,7 +14,9 @@ const MyClass = () => {
             console.log(res.data)
             return res.data;
         }
-    })
+    });
+
+    const totalEnrolled = classes.reduce((count, item) => count + item.enrolled , 0);
 
     return (
         <div>
@@ -23,6 +25,10 @@ const MyClass = () => {
                     <div className="stat place-items-center">
                         <div className="stat-title">Total My Classes</div>
                         <div className="stat-value">{classes.length}</div>
+                    </div>
+                    <div className="stat place-items-center">
+                        <div className="stat-title">Total Student Enrolled in all class</div>
+                        <div className="stat-value text-secondary">{totalEnrolled}</div>
                     </div>
                 </div>
 
@@ -35,7 +41,8 @@ const MyClass = () => {
                                 <th>Image</th>
                                 <th>Class Name</th>
                                 <th>Available Seat</th>
-                                <th className="text-start" >Status</th>
+                                <th>Status</th>
+                                <th>Enrolled Students</th>
                                 <th>Feedback</th>
                             </tr>
                         </thead>
@@ -61,6 +68,7 @@ const MyClass = () => {
                                     ${item?.instructorStatus == 'active' ? 'btn-accent' : item?.instructorStatus == 'pending' ? 'btn-warning' : 'btn-error'} `}
                                     >{item?.instructorStatus}</button> </td>
 
+                                    <td className="text-center"> {item?.enrolled || 0}</td>
                                     <td> {item?.adminFeedback}</td>
                                 </tr>)
                             }
