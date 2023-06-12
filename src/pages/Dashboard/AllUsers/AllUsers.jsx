@@ -16,38 +16,40 @@ const AllUsers = () => {
 
     const handleRole = async (user) => {
 
-        const { value: role } = await Swal.fire({
-            title: 'Select user role',
-            input: 'select',
-            inputOptions: {
-                'admin': 'admin',
-                'instructor': 'instructor',
-                'student': 'student'
-            },
-            inputPlaceholder: 'Select role',
-            showCancelButton: true,
-            width:'36rem'
-            ,
-            inputValidator: (value) => {
-                return new Promise((resolve) => {
-                    fetch(`http://localhost:5000/users/admin/${user._id}?role=${value}`, {
-                        method: 'PATCH'
-                    })
-                        .then(res => res.json())
-                        .then(data => {
-                            console.log('response data', data);
-                            if (data.modifiedCount) {
-                                refetch();
-                                resolve();
-                            }
-                        })
-                })
-            }
-        })
 
-        if (role) {
-            Swal.fire(`You selected: ${role}`)
-        }
+
+        //     const { value: role } = await Swal.fire({
+        //         title: 'Select user role',
+        //         input: 'select',
+        //         inputOptions: {
+        //             'admin': 'admin',
+        //             'instructor': 'instructor',
+        //             'student': 'student'
+        //         },
+        //         inputPlaceholder: 'Select role',
+        //         showCancelButton: true,
+        //         width: '36rem'
+        //         ,
+        //         inputValidator: (value) => {
+        //             return new Promise((resolve) => {
+        //                 fetch(`http://localhost:5000/users/admin/${user._id}?role=${value}`, {
+        //                     method: 'PATCH'
+        //                 })
+        //                     .then(res => res.json())
+        //                     .then(data => {
+        //                         console.log('response data', data);
+        //                         if (data.modifiedCount) {
+        //                             refetch();
+        //                             resolve();
+        //                         }
+        //                     })
+        //             })
+        //         }
+        //     })
+
+        //     if (role) {
+        //         Swal.fire(`You selected: ${role}`)
+        //     }
     }
 
 
@@ -93,12 +95,12 @@ const AllUsers = () => {
                 <title>Reel Camp | All Users</title>
             </Helmet>
             <div>
-            <div className="stats shadow my-5">
-                <div className="stat place-items-center">
-                    <div className="stat-title">Total Users</div>
-                    <div className="stat-value">{users.length}</div>
+                <div className="stats shadow my-5">
+                    <div className="stat place-items-center">
+                        <div className="stat-title">Total Users</div>
+                        <div className="stat-value">{users.length}</div>
+                    </div>
                 </div>
-            </div>
 
                 <div className="overflow-x-auto">
                     <table className="table w-full">
@@ -111,6 +113,7 @@ const AllUsers = () => {
                                 <th>Email</th>
                                 <th className="text-start" >Role</th>
                                 <th>Action</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -131,9 +134,13 @@ const AllUsers = () => {
                                     </td>
                                     <td> {user?.name} </td>
                                     <td> {user?.email}</td>
-                                    <td className="text-start">
+                                    <td>{user?.role}</td>
+                                    <td className="text-start space-x-2">
                                         <button onClick={() => handleRole(user)} className="btn">
-                                            {user?.role}
+                                            Admin
+                                        </button>
+                                        <button onClick={() => handleRole(user)} className="btn">
+                                            Instructor
                                         </button>
                                     </td>
                                     <td>
@@ -141,14 +148,10 @@ const AllUsers = () => {
                                     </td>
                                 </tr>)
                             }
-
-
                         </tbody>
 
                     </table>
                 </div>
-
-
             </div>
         </div>
     );

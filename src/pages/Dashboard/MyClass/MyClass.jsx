@@ -1,16 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const MyClass = () => {
 
-    const { user } = useAuth()
+    const { user } = useAuth();
+    const [axiosSecure] = useAxiosSecure();
 
     const { data: classes = [] } = useQuery({
         queryKey: ['myClasses'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/classes/instructor?email=${user.email}`);
-            console.log(res)
-            return res.json();
+            const res = await axiosSecure.get(`/instructor/myClass?email=${user.email}`);
+            console.log(res.data)
+            return res.data;
         }
     })
 
@@ -19,7 +21,7 @@ const MyClass = () => {
             <div>
                 <div className="stats shadow my-5">
                     <div className="stat place-items-center">
-                        <div className="stat-title">Total Users</div>
+                        <div className="stat-title">Total My Classes</div>
                         <div className="stat-value">{classes.length}</div>
                     </div>
                 </div>
@@ -31,10 +33,10 @@ const MyClass = () => {
                             <tr>
                                 <th>#</th>
                                 <th>Image</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th className="text-start" >Role</th>
-                                <th>Action</th>
+                                <th>Class Name</th>
+                                <th>Available Seat</th>
+                                <th className="text-start" >Status</th>
+                                <th>Feedback</th>
                             </tr>
                         </thead>
                         <tbody>
