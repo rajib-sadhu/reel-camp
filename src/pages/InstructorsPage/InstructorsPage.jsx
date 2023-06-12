@@ -27,7 +27,7 @@ const InstructorsPage = () => {
                     </div>
                 </div>
             </Parallax>
-            <div className='grid grid-cols-3 my-10' >
+            <div className='grid md:grid-cols-3 grid-cols-1 gap-10 my-10 md:px-40' >
                 {
                     instructor.map(item => <div key={item._id} className="card w-96 bg-base-100 shadow-xl mx-auto">
                         <figure className="px-10 pt-10">

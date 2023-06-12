@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = ({ price, item }) => {
 
+    // console.log(item)
+
     const navigate = useNavigate();
 
     const stripe = useStripe();
@@ -90,7 +92,7 @@ const CheckoutForm = ({ price, item }) => {
                 date: new Date()
             }
             // console.log('payment item', payment)
-            axiosSecure.post(`/payments/${item?._id}`, payment)
+            axiosSecure.post(`/payments/${item?._id}?classId=${item.classId}`, payment)
                 .then(res => {
                     console.log(res.data);
                     if (res.data.deleteResult.deletedCount) {

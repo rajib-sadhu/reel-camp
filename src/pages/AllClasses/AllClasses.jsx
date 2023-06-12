@@ -21,7 +21,7 @@ const AllClasses = () => {
                 </div>
             </Parallax>
 
-            <div className='grid grid-cols-2 gap-10 my-10 px-40' >
+            <div className='grid md:grid-cols-2 grid-cols-1 gap-10 my-10 md:px-40' >
                 {
                     classes.map(item=><ClassCard key={item._id} item={item} />)
                 }
