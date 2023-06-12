@@ -1,12 +1,26 @@
 import { Helmet } from "react-helmet";
-import useClass from "../../../hooks/useClass";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
+import { useState } from "react";
+import axios from "axios";
 
 
 const ManageClasses = () => {
 
-    const [classes] = useClass();
+    const [feedback, setFeedback] = useState('');
+    const [itemId, setItemId] = useState('');
 
-    console.log(classes)
+    const [axiosSecure] = useAxiosSecure();
+
+    const { data: classes = [], refetch } = useQuery({
+        queryKey: ['classes'],
+        queryFn: async () => {
+            const res = await axiosSecure.get('/classes/check')
+            // console.log(res.data)
+            return res.data;
+        }
+    })
 
     const totalClassesPrice = classes.reduce((sum, item) => sum + item.price, 0);
     const activeClasses = classes.reduce((count, item) => {
@@ -33,6 +47,35 @@ const ManageClasses = () => {
     }, 0);
 
 
+    const handleClassStatus = async (item, status) => {
+
+        const res = await axiosSecure.patch(`/classes/admin/status/${item._id}?status=${status}`);
+        console.log(res.data)
+        if (res.data.modifiedCount) {
+            refetch();
+            Swal.fire(
+                `${status}`,
+                `This class is ${status} now!`,
+                'success'
+            )
+        }
+    }
+
+    const handleFeedback = async (id) => {
+        console.log(id)
+        const res = await axios.patch(`http://localhost:5000/classes/admin/feedback/${itemId}`, { feedback: feedback });
+        if (res.data.modifiedCount) {
+            refetch();
+            setFeedback('');
+            setItemId('');
+            Swal.fire(
+                `Feedback send`,
+                `This class is have feedback now!`,
+                'success'
+            )
+        }
+
+    }
 
     return (
         <div className="mb-20">
@@ -48,7 +91,7 @@ const ManageClasses = () => {
 
                 <div className="stat place-items-center">
                     <div className="stat-title">Total Classes Value</div>
-                    <div className="stat-value text-secondary">${totalClassesPrice.toFixed(2)}</div>
+                    <div className="stat-value text-secondary">${totalClassesPrice}</div>
                 </div>
 
                 <div className="stat place-items-center">
@@ -86,25 +129,35 @@ const ManageClasses = () => {
                             <div className="mt-2 font-medium" >
                                 <h4 className="text-sm" ><span className="" >Email:</span> {item?.instructorEmail} </h4>
                                 <h4 className="text-sm" ><span className="" >Available Seats:</span> {item?.availableSeats} </h4>
-                                <h4 className="text-sm" ><span className="" >category:</span> {item?.category} </h4>
+                                {
+                                    item?.category == 'NA' || <h4 className="text-sm" ><span className="" >Category:</span> {item?.category} </h4>
+                                }
+                                <h4 className="text-sm" ><span className="" >Status:</span> {item?.instructorStatus} </h4>
+
                             </div>
                             <div className="mt-5 px-5 flex justify-between items-center">
                                 <div className="indicator">
                                     <span className="indicator-item indicator-start badge badge-secondary">Price</span>
-                                    <div className="text-2xl font-bold">${item?.price}</div>
+                                    <div className="text-2xl font-bold">${item?.price.toFixed(2)}</div>
                                 </div>
                                 <div>
-                                    {
-
-
-                                        <div className="flex flex-col gap-2" >
-                                            <button disabled={item?.instructorStatus.toLowerCase() == 'deny'} className="btn btn-xs text-white bg-green-600" >Approved</button>
-                                            <button disabled={item?.instructorStatus.toLowerCase() == 'active'} className="btn btn-xs text-white bg-red-600" >Denied</button>
-                                            <button className="btn btn-xs " >Feedback</button>
+                                    <div className="flex flex-col gap-2" >
+                                        <button onClick={() => handleClassStatus(item, 'active')} disabled={item?.instructorStatus == 'denied'} className="btn btn-xs text-white bg-green-600" >Approved</button>
+                                        <button onClick={() => handleClassStatus(item, 'denied')} disabled={item?.instructorStatus == 'active' || item?.instructorStatus == 'denied'} className="btn btn-xs text-white bg-red-600" >Denied</button>
+                                        <a onClick={() => setItemId(item._id)} className="btn btn-xs" href="#my_modal_8">Send Feedback</a>
+                                    </div>
+                                    {/* Feedback Modal Elements */}
+                                    <div className="modal text-black" id="my_modal_8">
+                                        <div className="modal-box bg-white">
+                                            <h3 className="font-bold text-lg mb-2">Send Feedback!</h3>
+                                            <textarea className="w-full bg-white border-2 p-2" rows="5"
+                                                value={feedback} onChange={(e) => setFeedback(e.target.value)}
+                                            ></textarea>
+                                            <div className="modal-action">
+                                                <a onClick={() => handleFeedback()} href="#" className="btn">Send</a>
+                                            </div>
                                         </div>
-                                    }
-
-
+                                    </div>
                                 </div>
                             </div>
                         </div>

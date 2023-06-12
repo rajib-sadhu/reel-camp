@@ -47,7 +47,7 @@ const AddClass = () => {
                 // console.log('image Res:-',imgResponse)
                 if (imgResponse.success) {
                     const imgURL = imgResponse.data.display_url;
-                    const { className, instructorName, instructorEmail, price, availableSeats, category } = data;
+                    const { className, instructorName, instructorEmail, classPrice, availableSeats, category } = data;
                     const newItem = {
                         className,
                         instructorName,
@@ -55,7 +55,7 @@ const AddClass = () => {
                         instructorStatus: 'pending',
                         availableSeats,
                         image: imgURL,
-                        price,
+                        price:parseFloat(classPrice),
                         category,
                         instructorImage:user.photoURL
                     }
@@ -132,7 +132,7 @@ const AddClass = () => {
                                 <span className="label-text">Price*</span>
                             </label>
                             <input type="number" placeholder="Price" className="input input-bordered w-full"
-                                {...register("price", { required: true })}
+                                {...register("classPrice", { required: true })}
                             />
                         </div>
                         <div className="form-control w-full">

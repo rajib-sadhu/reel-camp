@@ -16,23 +16,16 @@ const AllUsers = () => {
 
     const handleRole = async (user, value) => {
 
+        const res = await axiosSecure.patch(`http://localhost:5000/users/admin/${user._id}?role=${value}`);
 
-
-        fetch(`http://localhost:5000/users/admin/${user._id}?role=${value}`, {
-                            method: 'PATCH'
-                        })
-                            .then(res => res.json())
-                            .then(data => {
-                                console.log('response data', data);
-                                if (data.modifiedCount) {
-                                    refetch();
-                                    Swal.fire(
-                                        `User now ${user?.role} to ${value}`,
-                                        'User role changed!',
-                                        'success'
-                                      )
-                                }
-                            })
+        if (res.data.modifiedCount){
+            refetch();
+            Swal.fire(
+                `User now ${user?.role} to ${value}`,
+                'User role changed!',
+                'success'
+            )
+        }
 
 
         //     const { value: role } = await Swal.fire({
@@ -104,6 +97,29 @@ const AllUsers = () => {
 
     }
 
+    const totalStudent = users.reduce((count, item) => {
+        if (item.role == 'student') {
+            return count + 1;
+        }
+        return count;
+    }, 0);
+
+
+    const totalInstructors = users.reduce((count, item) => {
+        if (item.role == 'instructor') {
+            return count + 1;
+        }
+        return count;
+    }, 0);
+
+
+    const totalAdmin = users.reduce((count, item) => {
+        if (item.role == 'admin') {
+            return count + 1;
+        }
+        return count;
+    }, 0);
+
 
 
     return (
@@ -116,6 +132,21 @@ const AllUsers = () => {
                     <div className="stat place-items-center">
                         <div className="stat-title">Total Users</div>
                         <div className="stat-value">{users.length}</div>
+                    </div>
+
+                    <div className="stat place-items-center">
+                        <div className="stat-title">Total Students</div>
+                        <div className="stat-value text-secondary">{totalStudent}</div>
+                    </div>
+
+                    <div className="stat place-items-center">
+                        <div className="stat-title">Total Instructors</div>
+                        <div className="stat-value text-info">{totalInstructors}</div>
+                    </div>
+
+                    <div className="stat place-items-center">
+                        <div className="stat-title">Total Admins</div>
+                        <div className="stat-value">{totalAdmin}</div>
                     </div>
                 </div>
 
@@ -151,12 +182,12 @@ const AllUsers = () => {
                                     </td>
                                     <td> {user?.name} </td>
                                     <td> {user?.email}</td>
-                                    <td>{user?.role}</td>
+                                    <td><span className="badge badge-outline" >{user?.role}</span></td>
                                     <td className="text-start space-x-2">
-                                        <button disabled={user?.role=='admin'} onClick={() => handleRole(user,'admin')} className="btn">
+                                        <button disabled={user?.role == 'admin'} onClick={() => handleRole(user, 'admin')} className="btn">
                                             Admin
                                         </button>
-                                        <button disabled={user?.role=='instructor' || user?.role=='admin'} onClick={() => handleRole(user,'instructor')} className="btn">
+                                        <button disabled={user?.role == 'instructor' || user?.role == 'admin'} onClick={() => handleRole(user, 'instructor')} className="btn">
                                             Instructor
                                         </button>
                                     </td>
