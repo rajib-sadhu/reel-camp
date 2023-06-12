@@ -9,7 +9,9 @@ import LoadingAnimation from "../../../components/LoadingAnimation";
 const PopularClasses = () => {
 
     const [classes, loading] = useClass();
-    const sliceClasses = classes.slice(0,6);
+    const sortClasses = classes.sort((a,b) => b.enrolled - a.enrolled);
+    console.log(sortClasses)
+    const sliceClasses = sortClasses.slice(0,6);
 
 
     return (
@@ -18,7 +20,7 @@ const PopularClasses = () => {
             {
                 loading && <LoadingAnimation/>
             }
-            <div className="grid md:grid-cols-2 grid-cols-1 px-32 gap-10 mt-10">
+            <div className="grid md:grid-cols-2 grid-cols-1 md:px-32 gap-10 mt-10 px-3">
                 {
                     sliceClasses.map(item => <ClassCard key={item._id} item={item} />)
                 }

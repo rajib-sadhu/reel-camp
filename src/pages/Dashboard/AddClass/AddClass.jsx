@@ -57,7 +57,8 @@ const AddClass = () => {
                         image: imgURL,
                         price:parseFloat(classPrice),
                         category,
-                        instructorImage:user.photoURL
+                        instructorImage:user.photoURL,
+                        enrolled:0
                     }
                     console.log(newItem);
 

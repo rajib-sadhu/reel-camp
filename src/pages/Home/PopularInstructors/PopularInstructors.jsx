@@ -18,11 +18,11 @@ const PopularInstructors = () => {
     return (
         <div className="my-20">
             <SectionTitle heading="Popular Instructors" subHeading="Our best faculties" />
-            <div className='grid md:grid-cols-3 grid-cols-1 gap-10 my-10 md:px-20' >
+            <div className='grid md:grid-cols-3 grid-cols-1 gap-10 my-10 md:px-20 px-3' >
                 {
-                    instructor.map(item => <div key={item._id} className="card w-96 bg-base-100 shadow-xl mx-auto">
+                    instructor.map(item => <div key={item._id} className="card md:w-96 bg-base-100 shadow-xl mx-auto">
                         <figure className="px-10 pt-10">
-                            <img src={item?.photoURL} alt="Shoes" className="rounded-xl object-cover h-[20rem] w-full" />
+                            <img src={item?.photoURL} alt="Shoes" className="rounded-xl object-cover md:h-[20rem] h-[12rem] object-top w-full" />
                         </figure>
                         <div className="card-body">
                             <h2 className="card-title">{item?.name}</h2>

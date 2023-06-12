@@ -81,18 +81,19 @@ const ClassCard = ({ item }) => {
 
 
     return (
-        <div className={`card card-side bg-base-100 shadow-xl h-[18rem] 
+        <div className={`card card-side bg-base-100 shadow-xl md:h-[18rem] h-[12rem] 
         ${!item?.availableSeats? 'bg-red-600 text-white':''}`}>
-            <figure><img className="object-cover w-[20rem] h-full" src={item?.image} alt="Movie" /></figure>
-            <div className="card-body">
-                <h2 className="card-title">{item?.className}</h2>
-                <p>
+            <figure><img className="object-cover md:w-[20rem] w-[10rem] h-full" src={item?.image} alt="Movie" /></figure>
+            <div className="card-body space-x-2 px-3 py-1">
+                <h2 className="md:card-title text-lg">{item?.className}</h2>
+                <p className="text-sm" >
                     <p>Instructor: {item?.instructorName} </p>
                     <p>Price: ${item?.price} </p>
                     <p>Available Seats: {item?.availableSeats} </p>
+                    <p>Enrolled: {item?.enrolled} </p>
                 </p>
                 <div className="card-actions justify-end">
-                    <button disabled={isAdmin || isInstructor || item?.availableSeats==0 } onClick={() => handleEnroll(item)} className="btn btn-primary">Add Enroll Cart</button>
+                    <button disabled={isAdmin || isInstructor || item?.availableSeats==0 } onClick={() => handleEnroll(item)} className="btn md:btn-sm btn-xs btn-primary">Add Enroll Cart</button>
                 </div>
             </div>
         </div>
