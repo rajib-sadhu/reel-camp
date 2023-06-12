@@ -5,10 +5,12 @@ import Social from '../Shared/Social/Social';
 import useAuth from '../../hooks/useAuth';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import { useState } from 'react';
 
 
 const SignIn = () => {
 
+    const [fireError, setFireError] = useState('');
 
     const { signIn } = useAuth();
 
@@ -35,7 +37,10 @@ const SignIn = () => {
                 navigate("/")
                 reset();
             })
-
+            .catch(err=>{
+                console.log(err);
+                setFireError('Somethings is wrong! Check email and password and try again')
+            })
     }
 
 
@@ -70,7 +75,7 @@ const SignIn = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="text" placeholder="password" name="password" className="input input-bordered"
+                                <input type="password" placeholder="password" name="password" className="input input-bordered"
                                     {...register("password", {
                                         required: true,
                                         minLength: 6,
@@ -93,6 +98,7 @@ const SignIn = () => {
                             <div className="form-control mt-6">
                                 <button type='submit' className="btn btn-primary">Login</button>
                             </div>
+                            <p className="label-text text-red-600">{fireError}</p>
                         </form>
                         <div className="m-5" >
                             <div>

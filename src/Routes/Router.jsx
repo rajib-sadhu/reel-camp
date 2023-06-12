@@ -16,13 +16,14 @@ import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import MyClass from "../pages/Dashboard/MyClass/MyClass";
 import InstructorRoute from "./InstructorRoute";
 import InstructorsPage from "../pages/InstructorsPage/InstructorsPage";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 
 export const router = createBrowserRouter([
     {
         path: '/',
         element: <Main />,
-        errorElement: '',
+        errorElement: <ErrorPage/>,
         children: [
             {
                 path: '/',

@@ -183,7 +183,7 @@ const SignUp = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="text" placeholder="password" name="password" className="input input-bordered"
+                                <input type="password" placeholder="password" name="password" className="input input-bordered"
                                     {...register("password", {
                                         required: true,
                                         minLength: 6,
@@ -204,7 +204,7 @@ const SignUp = () => {
                                 <label className="label">
                                     <span className="label-text">Confirm Password</span>
                                 </label>
-                                <input type="text" placeholder="confirm password" name="confirmPassword" className="input input-bordered"
+                                <input type="password" placeholder="confirm password" name="confirmPassword" className="input input-bordered"
                                     {...register("confirmPassword",
                                         {
                                             required: true,
