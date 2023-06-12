@@ -21,9 +21,8 @@ const Navbar = () => {
     const links = <>
         <li><Link to={`/`} >Home</Link></li>
         <li><Link to={`/allClasses`} >Classes</Link></li>
-        <li><Link to={`/`} >Instructors</Link></li>
+        <li><Link to={`/allInstructors`} >Instructors</Link></li>
         {user && <li><Link to={`/dashboard`} >Dashboard</Link></li>}
-        <li><Link to={`/`} >About</Link></li>
         <li> <button onClick={() => setETheme(!ETheme)}>Theme {ETheme ? <FaSun></FaSun> : <FaMoon></FaMoon>}</button> </li>
     </>
 
