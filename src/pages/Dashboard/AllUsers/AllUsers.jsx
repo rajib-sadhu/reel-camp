@@ -14,8 +14,25 @@ const AllUsers = () => {
         return res.data;
     });
 
-    const handleRole = async (user) => {
+    const handleRole = async (user, value) => {
 
+
+
+        fetch(`http://localhost:5000/users/admin/${user._id}?role=${value}`, {
+                            method: 'PATCH'
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                console.log('response data', data);
+                                if (data.modifiedCount) {
+                                    refetch();
+                                    Swal.fire(
+                                        `User now ${user?.role} to ${value}`,
+                                        'User role changed!',
+                                        'success'
+                                      )
+                                }
+                            })
 
 
         //     const { value: role } = await Swal.fire({
@@ -136,10 +153,10 @@ const AllUsers = () => {
                                     <td> {user?.email}</td>
                                     <td>{user?.role}</td>
                                     <td className="text-start space-x-2">
-                                        <button onClick={() => handleRole(user)} className="btn">
+                                        <button disabled={user?.role=='admin'} onClick={() => handleRole(user,'admin')} className="btn">
                                             Admin
                                         </button>
-                                        <button onClick={() => handleRole(user)} className="btn">
+                                        <button disabled={user?.role=='instructor' || user?.role=='admin'} onClick={() => handleRole(user,'instructor')} className="btn">
                                             Instructor
                                         </button>
                                     </td>
