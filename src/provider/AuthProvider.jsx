@@ -57,7 +57,7 @@ const AuthProvider = ({ children }) => {
             console.log('Current User', currentUser);
             //  get and set token
             if (currentUser) {
-                axios.post('http://localhost:5000/jwt', { email: currentUser.email })
+                axios.post('https://reel-camp-server.vercel.app/jwt', { email: currentUser.email })
                     .then(res => {
                         // console.log(res.data.token);
                         const token = res.data.token

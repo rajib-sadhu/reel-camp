@@ -31,7 +31,7 @@ const ClassCard = ({ item }) => {
             };
 
             if (!existClass) {
-                fetch('http://localhost:5000/selectClasses', {
+                fetch('https://reel-camp-server.vercel.app/selectClasses', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -92,7 +92,7 @@ const ClassCard = ({ item }) => {
                     <p>Available Seats: {item?.availableSeats} </p>
                     <p>Enrolled: {item?.enrolled} </p>
                 </p>
-                <div className="card-actions justify-end">
+                <div className="card-actions justify-end p-3">
                     <button disabled={isAdmin || isInstructor || item?.availableSeats==0 } onClick={() => handleEnroll(item)} className="btn md:btn-sm btn-xs btn-primary">Add Enroll Cart</button>
                 </div>
             </div>

@@ -16,7 +16,7 @@ const AllUsers = () => {
 
     const handleRole = async (user, value) => {
 
-        const res = await axiosSecure.patch(`http://localhost:5000/users/admin/${user._id}?role=${value}`);
+        const res = await axiosSecure.patch(`https://reel-camp-server.vercel.app/users/admin/${user._id}?role=${value}`);
 
         if (res.data.modifiedCount){
             refetch();
@@ -42,7 +42,7 @@ const AllUsers = () => {
         //         ,
         //         inputValidator: (value) => {
         //             return new Promise((resolve) => {
-        //                 fetch(`http://localhost:5000/users/admin/${user._id}?role=${value}`, {
+        //                 fetch(`https://reel-camp-server.vercel.app/users/admin/${user._id}?role=${value}`, {
         //                     method: 'PATCH'
         //                 })
         //                     .then(res => res.json())
@@ -76,7 +76,7 @@ const AllUsers = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/users/${user._id}`, {
+                fetch(`https://reel-camp-server.vercel.app/users/${user._id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

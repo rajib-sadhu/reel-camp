@@ -27,9 +27,12 @@ const Navbar = () => {
         <li><Link to={`/`} >Home</Link></li>
         <li><Link to={`/allClasses`} >Classes</Link></li>
         <li><Link to={`/allInstructors`} >Instructors</Link></li>
-        {user && <li><Link to={`/dashboard/selectClasses`} >Dashboard</Link></li>}
-        {isAdmin && <li><Link to={`/dashboard/allUsers`} >Dashboard</Link></li>}
-        {isInstructor && <li><Link to={`/dashboard/myClass`} >Dashboard</Link></li>}
+        {isAdmin ? <li><Link to={`/dashboard/allUsers`} >Dashboard</Link></li>
+            :
+            isInstructor ? <li><Link to={`/dashboard/myClass`} >Dashboard</Link></li>
+                :
+                <li><Link to={`/dashboard/selectClasses`} >Dashboard</Link></li>
+        }
         <li> <button onClick={() => setETheme(!ETheme)}>Theme {ETheme ? <FaSun></FaSun> : <FaMoon></FaMoon>}</button> </li>
     </>
 

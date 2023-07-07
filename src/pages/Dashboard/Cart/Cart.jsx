@@ -24,7 +24,7 @@ const Cart = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/selectClasses/${item._id}`, {
+                fetch(`https://reel-camp-server.vercel.app/selectClasses/${item._id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

@@ -65,7 +65,7 @@ const MyClass = () => {
                                     </td>
                                     <td> {item?.className} </td>
                                     <td> {item?.availableSeats}</td>
-                                    <td> <button className={`btn 
+                                    <td> <button className={`btn btn-sm
                                     ${item?.instructorStatus == 'active' ? 'btn-accent' : item?.instructorStatus == 'pending' ? 'btn-warning' : 'btn-error'} `}
                                     >{item?.instructorStatus}</button> </td>
 

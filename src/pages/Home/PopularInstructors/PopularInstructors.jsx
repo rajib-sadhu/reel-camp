@@ -9,7 +9,7 @@ const PopularInstructors = () => {
     const { data: instructor = [] } = useQuery({
         queryKey: ['instructor'],
         queryFn: async () => {
-            const res = await axios('http://localhost:5000/instructor');
+            const res = await axios('https://reel-camp-server.vercel.app/instructor');
             const topData = res.data.slice(0, 6);
             return topData;
         }

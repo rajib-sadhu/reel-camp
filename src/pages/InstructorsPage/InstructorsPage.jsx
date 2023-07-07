@@ -8,7 +8,7 @@ const InstructorsPage = () => {
     const { data: instructor = [] } = useQuery({
         queryKey: ['instructor'],
         queryFn: async () => {
-            const res = await axios('http://localhost:5000/instructor');
+            const res = await axios('https://reel-camp-server.vercel.app/instructor');
             return res.data;
         }
     })

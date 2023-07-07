@@ -62,7 +62,7 @@ const SignUp = () => {
                                     console.log('User Created Successfully')
                                     const saveUser = { name: newUser.name, email: newUser.email, photoURL: newUser.photoURL, gender: newUser.gender, role: 'student' }
 
-                                    fetch(`http://localhost:5000/users`, {
+                                    fetch(`https://reel-camp-server.vercel.app/users`, {
                                         method: 'POST',
                                         headers: {
                                             'content-type': 'application/json'

@@ -63,7 +63,7 @@ const ManageClasses = () => {
 
     const handleFeedback = async (id) => {
         console.log(id)
-        const res = await axios.patch(`http://localhost:5000/classes/admin/feedback/${itemId}`, { feedback: feedback });
+        const res = await axios.patch(`https://reel-camp-server.vercel.app/classes/admin/feedback/${itemId}`, { feedback: feedback });
         if (res.data.modifiedCount) {
             refetch();
             setFeedback('');
