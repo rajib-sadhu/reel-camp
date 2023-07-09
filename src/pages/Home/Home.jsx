@@ -3,6 +3,7 @@ import Banner from "./Banner/Banner";
 import PopularClasses from "./PopularClasses/PopularClasses";
 import PopularInstructors from "./PopularInstructors/PopularInstructors";
 import ExtraSection from "./ExtraSection/ExtraSection";
+import Difference from "./Difference/Difference";
 
 
 const Home = () => {
@@ -11,10 +12,11 @@ const Home = () => {
             <Helmet>
                 <title>Reel Camp | Home</title>
             </Helmet>
-            <Banner/>
-            <PopularClasses/>
-            <PopularInstructors/>
-            <ExtraSection/>
+            <Banner />
+            <PopularClasses />
+            <PopularInstructors />
+            <ExtraSection />
+            <Difference />
         </div>
     );
 };
