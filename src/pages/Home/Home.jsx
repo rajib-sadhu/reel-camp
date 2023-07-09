@@ -4,6 +4,7 @@ import PopularClasses from "./PopularClasses/PopularClasses";
 import PopularInstructors from "./PopularInstructors/PopularInstructors";
 import ExtraSection from "./ExtraSection/ExtraSection";
 import Difference from "./Difference/Difference";
+import Reviews from "./Reviews/Reviews";
 
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
             <PopularInstructors />
             <ExtraSection />
             <Difference />
+            <Reviews />
         </div>
     );
 };
