@@ -15,7 +15,7 @@ const PopularClasses = () => {
 
 
     return (
-        <div className="my-10">
+        <div className="md:mt-40 mt-10">
             <SectionTitle heading="Popular Classes" subHeading="Explore our classes" />
             {
                 loading && <LoadingAnimation/>

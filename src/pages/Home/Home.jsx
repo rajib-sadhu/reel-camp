@@ -5,6 +5,7 @@ import PopularInstructors from "./PopularInstructors/PopularInstructors";
 import ExtraSection from "./ExtraSection/ExtraSection";
 import Difference from "./Difference/Difference";
 import Reviews from "./Reviews/Reviews";
+import JoinUs from "./JoinUs/JoinUs";
 
 
 const Home = () => {
@@ -18,6 +19,7 @@ const Home = () => {
             <PopularInstructors />
             <ExtraSection />
             <Difference />
+            <JoinUs/>
             <Reviews />
         </div>
     );

@@ -63,7 +63,7 @@ const Cart = () => {
 
                 <div className="stat place-items-center">
                     <div className="stat-title">Total Cart Value</div>
-                    <div className="stat-value text-secondary">${totalPriceCart}</div>
+                    <div className="stat-value text-secondary">${totalPriceCart.toFixed(2)}</div>
                 </div>
             </div>
 

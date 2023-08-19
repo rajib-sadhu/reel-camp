@@ -34,9 +34,9 @@ const Banner = () => {
                     <div className="grid md:grid-cols-2 grid-cols-1 items-center md:px-32 p-3 bg-no-repeat bg-cover bg-center min-h-screen" style={{
                         backgroundImage: "url(https://img.freepik.com/free-photo/professional-lighting-equipment-movie-set-with-smoke-air_1268-17216.jpg?w=1060&t=st=1688722801~exp=1688723401~hmac=5b1efe103013c4d3b2bc0fa5711bf983aa185ba9d8d1bf6731ed05e439e5e5cc)"
                     }} >
-                        <div className="space-y-3 text-white" >
-                            <h2 className="md:text-4xl text-xl uppercase flex gap-2 " >Join Our Summer <img src="https://i.ibb.co/4mPr5vP/fav-icon.png" className="md:w-10 w-4 object-contain inline-block" alt="" /> <span className="text-red-300 font-bold">Reel Camp</span>!</h2>
-                            <p className="md:text-xl text-lg tracking-wider">Unlock Your Creativity and Explore the World of Filmmaking</p>
+                        <div className="space-y-3 text-white backdrop-brightness-50 md:p-5 p-2 rounded-xl overflow-hidden" >
+                            <h2 className="md:text-3xl text-lg uppercase flex md:gap-2 gap-1" >Join Our Summer <img src="https://i.ibb.co/4mPr5vP/fav-icon.png" className="md:w-10 w-4 object-contain inline-block" alt="" /> <span className="text-red-500 font-bold">Reel Camp</span>!</h2>
+                            <p className="md:text-xl text-base tracking-wider">Unlock Your Creativity and Explore the World of Filmmaking</p>
                             <p className="md:text-base text-sm">Discover the world of filmmaking at our exciting summer camp! Unleash your creativity and dive into the art of storytelling through film. Our camp offers a hands-on experience where aspiring filmmakers can learn the essentials of scriptwriting, camera techniques, editing, and more. Join us for a fun-filled adventure, as industry professionals guide you in bringing your ideas to life on the big screen. </p>
                             <div className="mt-5">
                                 <Link className="btn btn-error">Learn More</Link>
@@ -51,7 +51,7 @@ const Banner = () => {
 
                 <SwiperSlide>
                     <div className="grid md:grid-cols-2 grid-cols-1 items-center bg-no-repeat bg-cover md:px-32 p-5 text-white min-h-screen" style={{ backgroundImage: `url('https://i.ibb.co/vjJnCZ2/man-filming-with-professional-camera-23-2149066324.jpg)` }} >
-                        <div className="space-y-3">
+                        <div className="space-y-3 backdrop-brightness-50 p-5 rounded-xl overflow-hidden">
                             <h2 className="md:text-4xl text-xl uppercase flex gap-2 font-semibold" >
                                 Cinematography Masterclass
                             </h2>

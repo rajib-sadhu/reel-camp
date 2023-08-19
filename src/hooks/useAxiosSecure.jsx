@@ -19,11 +19,15 @@ const useAxiosSecure = () => {
             if (token) {
                 config.headers.Authorization = `Bearer ${token}`;
             }
+            console.log(config)
             return config;
         });
 
         axiosSecure.interceptors.response.use(
-            (response) => response,
+            (response) => {
+                console.log(response)
+                return response
+            },
             async (error) => {
                 if (error.response && (error.response.status === 401 || error.response.status === 403)) {
                     await logOut();
